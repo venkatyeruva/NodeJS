@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Customers</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+        <script src="socket.io/socket.io.js"></script>
+        <script>
+            $(document).ready(function(){
+                var url = "/customers";
+                $.get(url).then(function(data){
+                    data.forEach(response => {
+                        $("#customers").append(`Id: ${response.id} Name: ${response.name} Loc: ${response.location} <br/>`);
+                    });
+                });
+                var socket = io();
+                socket.on('connect', function(data) {
+                    socket.on('data', function(data){
+                        console.log("Connected to server...", data);
+                    })
+                    socket.on('newCustomer', function (response){
+                        $("#customers").append(`Id: ${response.id} Name: ${response.name} Loc: ${response.location} <br/>`);
+                    })
+                })
+            });
+        </script>
+        <!-- <script>
+            (async () => {
+                const rawResponse = await fetch('/customers', {
+                    method: 'POST',
+                    headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({id: 6})
+                });
+                const content = await rawResponse.json();
+
+                console.log(content);
+            })();
+        </script> -->
+    </head>
+<body>
+
+<h1>Welcome Customers</h1>
+<hr/>
+<p>Customers.</p>
+<div id="customers">
+
+</div>
+</body>
+</html>

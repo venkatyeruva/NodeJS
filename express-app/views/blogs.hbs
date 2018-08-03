@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blogs</title>
+    </head>
+<body>
+    {{> header}}
+    <hr/>
+    
+  {{#each blogs}}
+    <div>
+    <h3>{{this.id}}.{{toUpper this.title}}</h3>
+    <p>
+        {{this.body}}
+    </p>
+    </div>
+    {{/each}}
+    {{> footer}}
+</body>
+
+</html>
