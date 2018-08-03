@@ -8,7 +8,7 @@ Globals
 3. Every application will have one main module (ex: index.js will bootstrap the app)
 4. The require funciton is uses to include/require modules
 
-##Module Wrapper
+#Module Wrapper
 -------------------
 1. Before a modules's code is executed, Node.js will wrap it with a function wrapper that looks like the following.
 (function(exports, require, module, _filename, _dirname){
@@ -21,7 +21,7 @@ Globals
 6. require.cache will return the app info
 7. Global vars accessible across module (ex: test = "hello")- Not recommended
 
-###Require steps
+#Require steps
 -----------------
 ex: require.resolve('functions')
 
